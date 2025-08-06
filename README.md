@@ -4,19 +4,19 @@ im making this so i can turn teto into ascii art. and because i hate myself and 
 
 # Design
 
-- Convenience
+- Convenience  
 For this program, I opted to take user input as opposed to taking CLI arguments because I believe that taking user input allows the user to search asyncronously for the information they need to provide to the program while they're using the program as opposed to needing everything beforehand in order to use CLI arguments. 
 
-- Convenience Season 2
+- Convenience Season 2  
 I also wanted to do some cross-compatibility, so I decided to learn some MACROS!!! on how to compile for Windows using the UCRT64 toolchain and POSIX systems with Linux (i use arch btw) so this little program works on either or operating systems. Though, since Mac OS X is POSIX compliant, it should work, but I don't have an Apple device to test it on. 
 
-- Convenience Season 3
+- Convenience Season 3  
 This program also has the ability for the user to choose the color of the background so their ASCII art won't look weird due to the contrast.
 
-- Quality
+- Quality  
 I also wanted to ensure QUALITY outputs everytime, so even though it's a little pedantic!!!, I created checks to ensure that the input image doesn't exceed the textual resolution of the console / TTY session. This ensures that the output will FIT the window, and not generate unformatted slop everywhere.
 
-- Quality Season 2
+- Quality Season 2  
 If I were using a program, I'd want quality. So instead of averaging RGB values to create a gray grayscale (the ascii art maps to a grayscaled version of the input image), I used colorimetric conversion to preserve the original input image's luminance. 
 
 However, some image formats store pixel data in sRGB, a gamma encoded color space, rather than linear light. (ex. 50% Red != 50% brightness).  
@@ -61,12 +61,14 @@ the program'll walk you thru on what you need to provide it upon exeuction.
 
 Generated using [my own tree script](https://github.com/cnnacat/win-tree) (yes im glazing it).  
 Edited to remove anything part of .gitignore and non-source-code related stuff.
+```bash
 ├── src
 │   ├── script.c
 │   └── script.h
 └── stb_image
     ├── stb_image.c
     └── stb_image.h
+```
 
 
 # Acknowledgements
