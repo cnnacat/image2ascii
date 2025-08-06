@@ -1,4 +1,5 @@
 #define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 #if _WIN32
 	#define STBI_WINDOWS_UTF8
