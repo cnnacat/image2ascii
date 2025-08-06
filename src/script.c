@@ -52,8 +52,18 @@ typedef struct
 
 void hang()
 {
+	int lebron_james;
+
 	printf("Press ENTER to quit: ");
-	getchar();
+
+	// first while loop consumes all the '\n's (or basically leftover until EOF) in stdout because APPARENLTY GETCHAR() INSTANTLY
+	// QUITS IF THERES A NEW LINE CHAR IN THE STDOUT STREAM AND FFLUSH DOESNT DO ANYTHINGGGGGGGGG
+	while ((lebron_james = getchar()) != '\n'
+		|| lebron_james != EOF)
+
+	while ((lebron_james = getchar()) != '\n'
+		|| lebron_james != EOF)
+
 	return;
 }
 
@@ -418,19 +428,15 @@ int do_da_ascii_art(char* path_to_img, FILE_EXTENSION file_type, BACKGROUND_COLO
 		{
 			for (int j = 0; j < width; j++)
 			{
-				unsigned char R_sRGB = *pixel_data++;
-				unsigned char G_sRGB = *pixel_data++;
-				unsigned char B_sRGB = *pixel_data++;
-
 				float normalized_sRGB[3];
 				float linear_RGB     [3];
 				float relative_linear_luminance = 0; // in the range of [0, 1]
 				float luma                      = 0; // aka relative_sRGB_luminance; in the range of [0, 1]
 				int   density_index             = 0;
 
-				normalized_sRGB[0] = (float)R_sRGB / 255.0f;
-				normalized_sRGB[1] = (float)G_sRGB / 255.0f;
-				normalized_sRGB[2] = (float)B_sRGB / 255.0f;
+				normalized_sRGB[0] = (float)*pixel_data++ / 255.0f;
+				normalized_sRGB[1] = (float)*pixel_data++ / 255.0f;
+				normalized_sRGB[2] = (float)*pixel_data++ / 255.0f;
 
 				// gamma expansion 
 				// https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale
@@ -544,7 +550,6 @@ int main(int argc, char* argv[])
 	BACKGROUND_COLOR background_color;
 	printf("What is your console's background color?: 1) White 2) Black: ");
 	char input = getchar();
-
 	if (input == '1')
 		background_color = WHITE;
 	else if (input == '2')
