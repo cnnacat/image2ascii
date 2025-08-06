@@ -29,23 +29,23 @@ Anyways, besides all this sRGB conversion stuff, if the image file just straight
 
 
 # Project specifications
-- Supports multiple file types
+- Supports multiple file types  
 JPEG, JPG, JPE, JFIF, BMP, TGA, PSD, PNG, HDR, PIC, PPM, PGM, PNM should all be supported. Please submit a bug report / pull request for any bugs.  
 
-- If input image uses sRGB,
+- If input image uses sRGB,  
 The program creates a grayscale image thru gamma expansion -> computing relative linear luminance -> then gamma compresses it to luma. 
 Maps luma to an ASCII gradient, creating the ASCII art.  
 
 Luminance = True linear-light brightness  
 Luma      = Brightness in sRGB  
 
-- If input image uses linear RGB
+- If input image uses linear RGB  
 Calculates luminance and maps the luminance to an ASCII gradient, creating the ASCII art.
 
-- Portable -- Works on Windows / POSIX-compliant operating systems
+- Portable -- Works on Windows / POSIX-compliant operating systems  
 Please submit a bug report / pull request if you find any bugs.  
 
-- O(n^2) algorithm 
+- O(n^2) algorithm   
 yes!  
 
 
