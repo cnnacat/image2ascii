@@ -2,6 +2,13 @@
 
 im making this so i can turn teto into ascii art. and because i hate myself and im addicted to C im doing it in C. ALSO THIS BECAME WAY TOOO LONG SO EVERYTHING ENDED UP BEING SHOVED WITHIN ONE ACTUAL .C FILE I UNDERESTIMATED MY VISION AND HOW MUCH CODE IT WOULD TAKE TO IMPLEMENT IT
 
+# How to run
+
+cmake it using UCRT64 on Windows or thug it out with gcc 
+or better yet! download from the [release page](https://github.com/cnnacat/image2ascii/releases)!
+
+the program'll walk you thru on what you need to provide it upon exeuction.
+
 # Design
 
 - Convenience  
@@ -16,13 +23,15 @@ This program also has the ability for the user to choose the color of the backgr
 - Quality  
 I also wanted to ensure QUALITY outputs everytime, so even though it's a little pedantic!!!, I created checks to ensure that the input image doesn't exceed the textual resolution of the console / TTY session. This ensures that the output will FIT the window, and not generate unformatted slop everywhere.
 
-- Quality Season 2  
-If I were using a program, I'd want quality. So instead of averaging RGB values to create a gray grayscale (the ascii art maps to a grayscaled version of the input image), I used colorimetric conversion to preserve the original input image's luminance. 
+
+# Algorithm (boring stuff here nerd alert!!!)  
+If I were using a program, I'd want quality. So instead of averaging RGB values to create a gray grayscale (the ascii art maps to a grayscaled version of the input image), I used colorimetric conversion to preserve the original input image's luma/luminance.   
 
 However, some image formats store pixel data in sRGB, a gamma encoded color space, rather than linear light. (ex. 50% Red != 50% brightness).  
 
 To do colorimetric conversion on sRGB, I needed to do gamma expansion -> calculate the relative grayscale luminance value from the three (now linear) channels (R, G, B) -> perform gamma compression.  
-To calculate the relative grayscale luminance, I used the weights provided by CIE/Rec.709. The equations (including the weights by CIE/Rec.709) that I used for gamma expansion, relative grayscale luminance calculation, and gamma compression are from this [wikipedia article](https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale). 
+
+To calculate the relative grayscale luminance, I used the weights provided by CIE/Rec.709. The equations (including the weights by CIE/Rec.709) that I used for gamma expansion, relative grayscale luminance calculation, and gamma compression are from this [wikipedia article](https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale).    
 
 
 Anyways, besides all this sRGB conversion stuff, if the image file just straight up has linear RGB values then I just do the relative grayscale luminance calculation and call it a day.  
@@ -49,13 +58,6 @@ Please submit a bug report / pull request if you find any bugs.
 yes!  
 
 
-# How to run
-
-cmake it using UCRT64 on Windows or thug it out with gcc 
-or better yet! download from the [release page](https://github.com/cnnacat/image2ascii/releases)!
-
-the program'll walk you thru on what you need to provide it upon exeuction.
-
 
 # File Structure
 
@@ -75,8 +77,11 @@ Edited to remove anything part of .gitignore and non-source-code related stuff.
 
 Thanks to everyone who contributed to [stb_image.h](https://github.com/nothings/stb/blob/master/stb_image.h)  
 
-Thanks to MagiHotline on their version of turning an [image into ascii](https://github.com/MagiHotline/IMGtoASCII) since I read their code instead of the documentation for std_image.h.  
+
+Thanks to MagiHotline on their version of turning an [image into ascii](https://github.com/MagiHotline/IMGtoASCII) since I read their code instead of the documentation for std_image.h.
+
 For the record, I did not copy the name!!! I was honestly surprised I was using a similar name and same tools as MagiHotline when their implementation came up from a Google search.
+
 
 Thanks SO87 for making this [REALLY good track](https://open.spotify.com/track/20tiIBe8xyNqovriJi6nH2?si=88eeeb009bc142c9) to listen to while I was programming this mess of a program.  
 
