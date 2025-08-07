@@ -36,11 +36,13 @@ So the way ASCII art is produced is taking an image, grayscaling it, and then ma
 # Algorithm (boring stuff here nerd alert!!!)  
 
 Pre-requisite Definitions:  
-Luminance   -> Percieved brightness of a color CALCULATED with linear RGB
-Luma        -> Percieved brightness of a color CALCULATED with sRGB
-LDR         -> Low Dynamic Range (typically stores R, G, B values from 0-255 for each color)
-HDR         -> High Dynamic Range (stores their RGB in multiple ways, but definitely more than 1 byte per color)
-CIE/Rec.709 -> A standard for image encoding and other stuff. 
+Luminance   -> Percieved brightness of a color CALCULATED with linear RGB  
+Luma        -> Percieved brightness of a color CALCULATED with sRGB  
+LDR         -> Low Dynamic Range (typically stores R, G, B values from 0-255 for each color)  
+HDR         -> High Dynamic Range (stores their RGB in multiple ways, but definitely more than 1 byte per color)  
+CIE/Rec.709 -> A standard for image encoding and other stuff.   
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Instead of averaging RGB values to create a grayscale (the ascii art maps to a grayscaled version of the input image), I wanted to used colorimetric conversion to preserve the original input image's luma/luminance because it would create a better grayscale.   
 
@@ -48,10 +50,13 @@ If I wanted to do colorimetric conversion to grayscale, I would need the pixels 
 
 This is fairly easy if the image was a file format that used HDR, because they store RGB values in linear light. ALl I needed to do was use this linear luminance [formula](https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale) whose weights was provided by [Rec.709](https://en.wikipedia.org/wiki/Rec._709) to make the pixel gray. 
 
+
 However, some image formats (mainly file formats that use LDR) store pixel data in sRGB, a gamma encoded color space, rather than having their RGB values in linear light. (ex. 50% Red != 50% brightness).  
 What this meant was that I needed to decode (expand) the gamma, perform the conversion to grayscale, and then recompress the gamma back.
 The formula for gamma expansion and recompression (and the linear luminance formula to make a pixel gray) can be found on [this wikipedia page](https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale).
 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **For anyone reading this who also wants to use stb_image.h, do note..**  
 
