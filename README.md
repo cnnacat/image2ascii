@@ -42,7 +42,8 @@ Wanted it to work on Windows and POSIX-compliant systems. Because I use Arch Lin
 
 So the way ASCII art is produced is taking an image, grayscaling it, and then mapping it to an ASCII gradient. But usually, the quality of the ASCII output is determined by the quality of the grayscale. 
 
-Instead of taking the easy approach of just averaging the RGB values, I did colorimetric conversion to make a cooler grayscale. More about it on the next section (nerd alert).
+Instead of taking the easy approach of just averaging the RGB values, I did colorimetric conversion to make a cooler grayscale. More about it on the next section (nerd alert).  
+also i hard coded the aspect ratio to be 2:1 because text is often longer than it is wide...
 
 
 
