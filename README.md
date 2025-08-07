@@ -38,6 +38,8 @@ I wanted it to be as easy to use as possible so instead of forcing the user to l
 
 Wanted it to work on Windows and POSIX-compliant systems. Because I use Arch Linux btw sometimes.
 
+but POSIX isnt tested yet LOOOOOL
+
 ### Quality ASCII output
 
 So the way ASCII art is produced is taking an image, grayscaling it, and then mapping it to an ASCII gradient. But usually, the quality of the ASCII output is determined by the quality of the grayscale. 
