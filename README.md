@@ -76,9 +76,11 @@ The formula for gamma expansion and recompression (and the linear luminance form
 
  ## For anyone reading this who also wants to use stb_image.h, do note.. 
 
-stbi_load() and all derivatives of this function (ex. stbi_load_from_file()) **will effectively convert** all HDR images to LDR images by clamping the HDR image's pixels. Naturally, you can't convert it back to HDR.  
+stbi_load() and all derivatives of this function (ex. stbi_load_from_file()) **will effectively convert** all HDR images to LDR images by clamping the HDR image's pixels.  
+Naturally, you can't convert it back to HDR.  
 
-stbi_load() will also apply some kind of gamma conversion during the conversion from HDR to LDR. To disable this, you gotta use 
+stbi_load() will also apply some kind of gamma conversion during the conversion from HDR to LDR.  
+To disable this, you gotta use  
 ```bash stbi_hdr_to_ldr_gamma(1.0f) and stbi_hdr_to_ldr_gamma(1.0f)```.  
 
 <br>
@@ -91,21 +93,26 @@ Do note that instead of returning a range of integers from [0-255] for each colo
 
 stbi_loadf() will **ALSO** convert all LDR files loaded with this function to HDR (kinda? it really just applies a gamma conversion to bring it from LDR to HDR). 
 
-If you want to load HDR files, but don't want stbi_loadf() to convert LDR to HDR, just disable the gamma conversion with ```bash stbi_ldr_to_hdr_gamma(1.0f) and stbi_ldr_to_hdr_scale(1.0f)```.  
+If you want to load HDR files, but don't want stbi_loadf() to convert LDR to HDR, just disable the gamma conversion with  
+```bash stbi_ldr_to_hdr_gamma(1.0f) and stbi_ldr_to_hdr_scale(1.0f)```.  
 
 
 <br>
 
-When stbi_loadf() does LDR to HDR promotion, it also does gamma expansion, bringing the pixels from the sRGB color space to linear color space. You don't need to manually bring any LDR files using the sRGB color space to linear color space. **BUT the gamma expansion that stbi_loadf() uses isn't true gamma expansion**, but rather an estimate of the formula. 
+When stbi_loadf() does LDR to HDR promotion, it also does gamma expansion, bringing the pixels from the sRGB color space to linear color space.  
+You don't need to manually bring any LDR files using the sRGB color space to linear color space.  
+
+**BUT the gamma expansion that stbi_loadf() uses isn't true gamma expansion**, but rather an estimate of the formula. 
 
 If you want true gamma expansion, you must disable LDR to HDR promotion, then implement the gamma conversion yourself. If this is your intent, I recommend using the provided formulas from the wikipedia page which is hyperlinked above.  
 
+
 <br>
 
 
-**If anyone is confused about the technicalities of color space and all that stuff, it's OK to just abstract it to "The values of R, G, B (and A) are just numbers. sRGB values are non-linear, while linear RGB values are linear".**
+### If anyone is confused about the technicalities of color space and all that stuff, it's OK to just abstract it to "The values of R, G, B (and A) are just numbers. sRGB values are non-linear, while linear RGB values are linear".
 
-**Ignore all this LDR and HDR stuff. If your operation requires the pixels to be in the linear colorspace, and it is in the linear colorspace, just operate on it. Else, if it's in the sRGB color space, convert it to the linear color space using gamma expansion.**
+### Ignore all this LDR and HDR stuff. If your operation requires the pixels to be in the linear colorspace, and it is in the linear colorspace, just operate on it. Else, if it's in the sRGB color space, convert it to the linear color space using gamma expansion.
 
 
 # File Structure
