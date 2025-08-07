@@ -78,7 +78,8 @@ The formula for gamma expansion and recompression (and the linear luminance form
 
 stbi_load() and all derivatives of this function (ex. stbi_load_from_file()) **will effectively convert** all HDR images to LDR images by clamping the HDR image's pixels. Naturally, you can't convert it back to HDR.  
 
-stbi_load() will also apply some kind of gamma conversion during the conversion from HDR to LDR. To disable this, you gotta use stbi_hdr_to_ldr_gamma(1.0f) and stbi_hdr_to_ldr_gamma(1.0f).  
+stbi_load() will also apply some kind of gamma conversion during the conversion from HDR to LDR. To disable this, you gotta use 
+```bash stbi_hdr_to_ldr_gamma(1.0f) and stbi_hdr_to_ldr_gamma(1.0f)```.  
 
 <br>
 
@@ -90,7 +91,7 @@ Do note that instead of returning a range of integers from [0-255] for each colo
 
 stbi_loadf() will **ALSO** convert all LDR files loaded with this function to HDR (kinda? it really just applies a gamma conversion to bring it from LDR to HDR). 
 
-If you want to load HDR files, but don't want stbi_loadf() to convert LDR to HDR, just disable the gamma conversion with stbi_ldr_to_hdr_gamma(1.0f) and stbi_ldr_to_hdr_scale(1.0f).  
+If you want to load HDR files, but don't want stbi_loadf() to convert LDR to HDR, just disable the gamma conversion with ```bash stbi_ldr_to_hdr_gamma(1.0f) and stbi_ldr_to_hdr_scale(1.0f)```.  
 
 
 <br>
