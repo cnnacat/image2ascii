@@ -1,6 +1,8 @@
 # image2ascii
 
-im making this so i can turn teto into ascii art. and because i hate myself and im addicted to C im doing it in C. ALSO THIS BECAME WAY TOOO LONG SO EVERYTHING ENDED UP BEING SHOVED WITHIN ONE ACTUAL .C FILE I UNDERESTIMATED MY VISION AND HOW MUCH CODE IT WOULD TAKE TO IMPLEMENT IT
+im making this so i can turn teto into ascii art. and because i hate myself and im addicted to C im doing it in C.  
+
+ALSO THIS BECAME WAY TOOO LONG SO EVERYTHING ENDED UP BEING SHOVED WITHIN ONE ACTUAL .C FILE I UNDERESTIMATED MY VISION AND HOW MUCH CODE IT WOULD TAKE TO IMPLEMENT IT
 
 
 # Project specifications
@@ -14,7 +16,7 @@ im making this so i can turn teto into ascii art. and because i hate myself and 
 	- PIC
 	- PPM, PGM, 
 
-	  
+
 Please submit a bug report / pull request for any bugs.  
 
 
@@ -28,15 +30,15 @@ the program'll walk you thru on what you need to provide it upon exeuction.
 
 # Design choices
 
-- Easy to use
+### Easy to use
 
 I wanted it to be as easy to use as possible so instead of forcing the user to learn how to interact with the program thru CLI arguments, I opted to just not use CLI arguments at all and take user input during run-time. 
 
-- Cross-compatibility
+### Cross-compatibility
 
 Wanted it to work on Windows and POSIX-compliant systems. Because I use Arch Linux btw sometimes.
 
-- Quality ASCII output
+### Quality ASCII output
 
 So the way ASCII art is produced is taking an image, grayscaling it, and then mapping it to an ASCII gradient. But usually, the quality of the ASCII output is determined by the quality of the grayscale. Instead of taking the easy approach of just averaging the RGB values, I did colorimetric conversion to make a cooler grayscale. More about it on the next section (nerd alert).
 
@@ -49,9 +51,10 @@ Pre-requisite Definitions:
 Luminance   -> Percieved brightness of a color CALCULATED with linear RGB  
 Luma        -> Percieved brightness of a color CALCULATED with sRGB  
 LDR         -> Low Dynamic Range (typically stores R, G, B values from 0-255 for each color)  
-HDR         -> High Dynamic Range (stores their RGB in multiple ways, but definitely more than 1 byte per color)  
+HDR         -> High Dynamic Range (stores their RGB in multiple ways, 
+                                   but definitely more than 1 byte per color)  
 CIE/Rec.709 -> A standard for image encoding and other stuff.   
-<pre>
+</pre>
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Instead of averaging RGB values to create a grayscale (the ascii art maps to a grayscaled version of the input image), I wanted to used colorimetric conversion to preserve the original input image's luma/luminance because it would create a better grayscale.   
