@@ -38,7 +38,7 @@ I wanted it to be as easy to use as possible so instead of forcing the user to l
 
 Wanted it to work on Windows and POSIX-compliant systems. Because I use Arch Linux btw sometimes.
 
-but POSIX isnt tested yet LOOOOOL
+but POSIX isnt tested yet LOOOOOL so...
 
 ### Quality ASCII output
 
