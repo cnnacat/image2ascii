@@ -506,13 +506,22 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 						// because computers are bad at multiplication.
 						if (relative_linear_luminance < 0.0f)
 							relative_linear_luminance = 0.0f;
+
 						else if (relative_linear_luminance > 1.0f)
 							relative_linear_luminance = 1.0f;
 					}
 				}
 
 				else
+				{
 					relative_linear_luminance = 0.2126f*linear_RGB[0] + 0.7152f*linear_RGB[1] + 0.0722*linear_RGB[2]; 
+
+					if (relative_linear_luminance < 0.0f)
+						relative_linear_luminance = 0.0f;
+
+					else if (relative_linear_luminance > 1.0f)
+						relative_linear_luminance = 1.0f;
+				}
 
 
 				// gamma compression
@@ -526,6 +535,7 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 				// just in case for rounding errors
 				if (density_index < 0)
 					density_index = 0;
+				
 				if (density_index >= density_length)
 					density_index = density_length - 1
 				;
@@ -579,7 +589,15 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 					}
 				}	
 				else
+				{
 					relative_linear_luminance = 0.2126*linear_RGB[0] + 0.7152*linear_RGB[1] + 0.0722*linear_RGB[2];
+
+					if (relative_linear_luminance < 0.0f)
+						relative_linear_luminance = 0.0f;
+					else if (relative_linear_luminance > 1.0f)
+						relative_linear_luminance = 1.0f;
+				}
+
 
 				density_index = relative_linear_luminance * (density_length - 1);
 
