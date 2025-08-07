@@ -362,14 +362,14 @@ int enforce_console_resolution(int img_width, int img_height)
 // force all color channels to be 3 (always RGB)
 int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 {
+	bool   is_hdr         = false;
 	float* img_data       = NULL;
 	float* pixel_data     = NULL;
-	bool is_hdr = false;
-	char*          density        = NULL;
-	int            density_length = 0;
-	int            width          = 0;
-	int            height         = 0;
-	int            color_channels = 0;
+	char*  density        = NULL;
+	int    density_length = 0;
+	int    width          = 0;
+	int    height         = 0;
+	int    color_channels = 0;
 
 
 	if (bg_color == BLACK)
@@ -449,6 +449,8 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 
 	// HDR IS ALWAYS LINEAR LIGHT
 	// LDR IS PRESUMED TO USE sRGB
+
+
 	if (!is_hdr)
 	{
 		pixel_data = img_data;
@@ -492,6 +494,7 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 					if (alpha_pixel <= 0.0f)
 					{
 						putchar(' ');
+						putchar(' ');
 						continue;
 					}
 
@@ -527,6 +530,7 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 					density_index = density_length - 1
 				;
 				putchar(density[density_index]);
+				putchar(density[density_index]);
 				
 			}
 			putchar('\n');
@@ -558,6 +562,7 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 					if (alpha_pixel <= 0.0f)
 					{
 						putchar(' ');
+						putchar(' ');
 						continue;
 					}
 
@@ -583,6 +588,7 @@ int do_da_ascii_art(char* path_to_img, BACKGROUND_COLOR bg_color)
 				if (density_index >= density_length)
 					density_index = density_length - 1;
 
+				putchar(density[density_index]);
 				putchar(density[density_index]);
 			}
 			putchar('\n');
@@ -723,139 +729,143 @@ int main(int argc, char* argv[])
 
 
 #if 0                                                              
-                                                              oyyn
-                                                             no11u}
-                                                            ^y1}}}Z^
-                                                            vu{{{}1}
-                                                            cu{{{}}t
-                                                             31{{{{uc
-                                                              [1}}}}[
-                                                              ^Z133}ur
-                                                               }ou1313
-                                                                EZu3{Z.
-                                                                v2u13u}
-                                                                 EZu3}[
-                                                                 nyu3{ur
-                                                                 vwZu}1}
-                                                                  9Zu}}[
-                                                                  oyu3{y^
-                                                                  }2Z3{u{
-                                                                  vhZ3}1o
-                                                                  rwZu31y
-                                                                  .9ZZu1j)
-                                                                   PyZZuZY
-                                                                   22yxZZyv^.
-                                                                   2PqqSSPU8OV2}c
-                                                                .{2OGpGGGGGGGGGAU9t
-                                                              ^2KUXAAAAAAGAGGAGpp4p9{
-                                                             {K8AAHHHAAAAAAAAAOppVp9h2
-                                                            jR88XXHHAAAAAAAAOAAOOVdd9VP.
-                                                           tR88XHHHHHAAAAAAAAAOOOVdh669P
-                                                          vR$DD8DDDRHHAAKKAAAUUOOVdhh66h2
-                                                         .K$$DD8BBBBDHHHKKKKUUOOVdd9hPkwPn
-                                                         j0$DDD0MMM0BDHHHKKKKUOVVd99PqS2wwv
-                                                        ^8B$DD$MWWWMBDHHHKKKUUOVVd99PkS222E
-                                                        j0B$$$0NWWW0B#RHHKKKUUOVV999PkS222q}
-                                                        K$B$$BMNWWW0BDHHHHHKUUOVVd99PkSE2a2E
-                                                       {gB$$DBMWQWW0$RHHHHKKUUOVVd9PkkqE]a2w}
-                                                       60B$$$BMWQWM0$RHHHKKUUOVVVdPkqkqE2]22E
-                                                      .80B$$$BMQQWMBDRHHHHKUUOVVdhPkqqSE2]22hv
-                                                      {gB$#$B0WQWWMB#RRHHHKKUOVddhPqqSE22]]22o
-                                                      60$D#$B0MWWMMB#RRHKHHUUOVd6kqSSEaaa]]22w^
-                                                      KB$D#$B0MWMM0B#RHHHKKUUOdhPqSS22ayaa]2Sq)
-                                                     rg$DDDD$BMMMM0$DHHHHKAUUVhPkkSE2ayjya]2E2o
-                                                     nM$DDRD$B0000$DRHHKKUOOOdhPkqSE2ayyyyyaaaw.
-                                                     V0#DDDD$B00B$DRHHHKKUOVd9hkkSSE2ayyyyaaaa2v
-                                                    ^8B#DDD#$B0B$$DRHHHHKUVd99hkkSSE]ayyyya]aaw}
-                                                    tg$DDDD##$B$$$DRDHHKUOV9kkPkqSS2ayyyyaaaaa2Y
-                                                    60$#DDD###B$D#DDRHHUOOV9kkkkqSS]ayjyyaaa]a2w
-                                                    KB$##DDD###DD#DDRHAUOVV9PkPkqSE]yyyyyaaayjahc
-                                                   vgB$###DDDRDDDDDRHAAOOOVd9hPqSEEayyyayyyyajaw}
-                                                   jWB$##DDDRRDDDDRHHAAUUOVVdhPkSEEaayyayxYxaaawY
-                                                   K0B$###DDRRDD#DHHHAUUOOVddhPkqS2aaaaayxxxaaa29.
-                                                  vg0$#DDDDDRD8DDRHHAUUOOVddhPkqqS2222aayxxyaaa2hc
-                                                  jW0$#DRRDDD888RHHAUOOOVdhPkqqSqSE2222ayyyyaaawd}
-                                                  KMB$DRRRD88888AHHAOOOVdhhPkqSSqqSEaaayyyjyyaa2P2
-                                                 vg0$DRRRR8888XXAAAAOUOVdhPkqSqqqqS2ayyyxyyjjja2w9.
-                                                 6M0DRRRR8XXXXXAAGpOOOOdhPkkqqqSSSE2ayyyyyyyxja2whv
-                                                ^80$DRRHHXXAAbGGGppOOVVdPkkqSSSS2222ayyyyyjyjja2wP2
-                                                tN0$DRRHXXAbAbG44ppVVVd66kkqSSSE22aaayyyjjjjjaa2wPOr
-                                                VM$888XXXAbGGG4444pVVVd66qqqSS22222aayaayxYxyaa2wPVj
-                                               vg$888XXAXbOOO4464444Vdd66kqSSSE2222aaayyyjYxyyaSSkPO^
-                                               6M$888XXbbOOO4466644d9d6666qSSSS2222aaayjyjxYxxa]SSwdn
-                                              rg$88XXXAbOOdd666664P4996P66qSSSS2a22aaayjjjyxxxya]2Eq9.
-                                              6$$8XXXAbGddhh6666666PPP666qqSSEE22a22ayyjjjxYxxxxaa2wht
-                                             tgBD8XAAbGpdhkkkww6666PPPPPqqqqEEE]aaaaayjjjYYxyxxxya2EqP
-                                            r8$88XbbOOddhkkwwwwww6SPSSSSqqqqqEE]]a]]yyjxxYYjyyxxxa2awh{
-                                            V$$XXbbOOddhkkkwEEEEwwwwSSSSwPPPqqE]]]]]yxYYooYxjyyxxy2a2wP
-                                           60$8XbbpddhkkkkEEEEEEEEwwSww666PPqqq]]]]]yYYooooYjyxyxa222wht
-                                          6M$8XAbpdhhkkkwwEEEaaaEEE2wSww66PPqqE]]]2]yYYooooYxxyxxaESSwP9
-                                         j$$8XAbOdhkkkwwEEEEaaaaaEE22wwwqqqqwEEE]]2]yjYYoooYxyxxxa]22wPO}
-                                        jg$8XApphkww22E2E2EaaaajaaaE222wwqqqqSEE]]22]yjYYYYYxjxxaa]]2Swd9.
-                                       jR8Abbpdhkw2aaa22aaaaaajjjaaay22wkkqqqSEE]]]]]ajxYYYxjxyyya]]]SwhOj
-                                      tRXbOddhqqqwayyyyayaaajjjjjjjxy2wkqhhqqSSE]]yayyjxYYYxxxyyyy]]2]khdO^
-                                     {8AphkkkqqPPwaxxyxjjjjjjjjjjjayy2wq9hhkkqSE]xxxxxxxxxxxxxyyyyy]]]SkdOj
-                                    ^KGdqwkkqP999qaxxxyjjjjjjjZjjjyxawq94499hqSaaxYYYxxxjxxxxxyayaaa]a2kPOO^
-                                    6bh222wP99ppV92x5xxjajjjZZZZjyyyawP4pp49qq2axYYYYxxxjjxxyyaayayaa]2SqdAn
-                                   nAPaxxawP9pbAb4wa5xxjjjjZZZZZxxyy2q4bAb4Pqq2yZZZZYYxxjjjjjjyaaayyaa2SwdO9
-                                  .V9255xawP9pAHAGP2x5xjjjjZZZZZjxxywPpKKb9Pq9q2ZeeeZZYYxYxjxjyayyyxy]2SkhVUt
-                                  tGwyZZy2qqP4bKKApP2yxxjjZZZZeZxxxaw4bmHb9P99P25eteeZZYYYxxxxyyyyyxya]SqPdOV
-                                  P9EZeZy2qqqP9AHHHp92yxxZZZeeeZZja2PbmDRKV99P25tfffeeZZYYxxxjjyaayxyy]ESkdOUv
-                                 rVPaZeZy22aooj9KmmHb92xZZZZeeeeZjj29AR#RK9wjolF)))iteeZYYYxxjjya]]yyy]2Sk9VU2
-                                 {Gwje[5xolC)FCo9ARDmb92xZZeeeeeZjj2pm$$KwoC))zccczifteZZYxxxjyaa]]]ay]2SkhdVO^
-                                 jpwx[[llCC))zzFoPHDDmbwy5ZeeeeeejxwbRBRPolCFzc!!!!Tif[eZYxxxyaayy]2aya]Skh9VUt
-                                 P92Z[33CCCC)zcz)lpD$$m4wx5eeeeeeZxwK##bjoojoFz!!c!zTitZeYxxxyyayjyaaaa]Skh9VUP
-                                 VP25[3CCljjl)zczF2H$g$K925ZeeeeeZyqHBRPoo29Pxic*!!cz)f[eZxxjyyyyjjyyaa]Skhh9VO^
-                                .VPyZtCCljwP2tTzz)l4RggRbPa5eeteeZa9RBHwjj2a2yfz**!!cTi[eZYYjyyyyjjyaaya]SkhhVUt
-                                ^VPy[fF3ojjaxfT**zF2HgMgRGwxZet[ZxwpR0H9wj3ffiT*****cz)f[Zoojyyyyjy]]aya]SkhhdU2
-                                rVPy[fFljo3FiTz**c)oV#MMgmp2Ze[[[xqb#0RVPoFzzz*!****cc)F[Zooxyyyaaa2]yxa]Shh9VO9
-                                ^VPytFFo2l)zz!!**!)3PR0NM$HPyZ[[ZxPKBMgm4o)c!!!!!***cc)F3uooxyxx]2]2]ayy]S6h9VOOr
-                                ^VPx3FCj2l)z*!!**!TCwRMWWMDbqx[[ZyPm0MMDpo)c!!!!!***cz)F3uoYxyxxya]EE22]]S6h9VOU{
-                                .Vqxl3ljwoFT******T3PRNWQWMRV25[Zy9RMNN$bo)c!!!*!!*zz)CC1uYxxyaayaa]2aEE2S6hhVOX}
-                                 VqxooowPjfTz****zTl9#WQQQWMR9a[Z2pDNWW0Hj)zz**!!!*T)CllZZYxja]aaaaaa2SSESkkhVOUj
-                                 Pqaj22wP2[iT***zTixGBQQQQQWMHP5x2b#NQQMRwCFTT*!**zTFlojyaYxja]aaaaa22SSESkkhVOU2
-                                 6P2qPPP9qa[iTzTTilqHM%QQQWWN#bwawKBQQQWBVo3fiTzzTTilojwqS]xja]aaEE2a2SSSSkkhVOU2
-                                 j92Ppp499qa[iiiF32ABN%%%WNMMgRpP9HMQQ%QMR9xtfiiiifto2PPh6Eyjja22EE2aaSqSSkkhVOU2
-                                 }G2PbKp999Pwx5lojV#MQ%QQWMMMM$HbbRMQQQWNBK9a5[[t[Zy2w9Vphq2axa2a2Eaa2EEE2Sk9GUUP
-                                 {G29KmAp44pp4P9VKRMQ%%WWNMggMM#R#BWQQWWWNBHb9PqqqqP9VbAG4PS2yaayaE2EE22]2Sk9GUUV
-                                 rO29KRmKbbAHR##B0MQQQQNNMggMNNMNNNQQWQQWWWMBDHHHHKKKH8HAVhkS]22aaaEE22SSSkhVGOUV
-                                 .92qGRDmHHD$MNNWWQQQQNMg$D#0MMNNNWQQQQQQQQQQQNM0gB#DDD8AVhkS22EEaaESaEqkkkhVVUUP
-                                  E224mD888D$MNWWWQ%QWMg$RmDB0MNWWWQQQQQ%QQQQ%%QWMMg$$D8AVhkkSSSE2222aEqk6kh9VUX2
-                                  jqyPHRRRRRDgMNNNQWWMM$DmHR#0MNNWWWWQQQ%%%QQ%QQWNM0gg#8AG46kkqqS22ay2SqkkkhVVUXj
-                                  {hyPHRRRRRR#Bg0MNNMM0$RHHmDgMMNNNWWQQQ%%%QQ%%QQWNMggDHAG49kkqS2a2ESqqkkkkhVGUXt
-                                  ^92qARRRRRRD##$g000g$DmKKHR$g0MMNNWQQQ%%%%Q%%%QWWMg$DHAG496kqSEESkkkqk6669VOURc
-                                   PPqGDDRRRRRDDD$#$$$DRHKAKmD$g0MMWWWQ%%Q%%%%%%QWWMg$DHbp496PPqSkPPkkqPd99VGUXK.
-                                   jGhG8DDRRRmRRRDDDDRmHKAAAHR#gggMMWQQQQQ%%%%%QQWWN0#8AG499k6PqSkPhhPqPd9VVGUXP
-                                   {UpGHDDDRmmmmmmRRmmHAbbbbKHR$gg0MWWNWQ%%%%%Q%QWWN0#HbV4966kkqqqkPhPPhd99VGUXn
-                                   ^8AAH8DDRR888mmmHmHKAbGGbKHm#$gMMM00NW%%%%QQQQWNMgDHG4966kkqqqkkPhhhh6d9VGU8r
-                                    V8XH88DRR8H8HHHHHKAGpppbKHR$$gg#HKHBNQ%%%QQQQWM0BDAG496kkqkkkPPPPhhP6dVpGOV
-                                    j$8HH88DDRHHmHHHXAA4P9ppbKmDD$DK9P9RMQQQQQWWWNMg#8AV496kqqkPPhhPP9hPk69VGOn
-                                    vg8XH8mD88HHHXXXXAbP22qP4pbAAKKV9VKBNQQQQWWWNMg$DHbV496kkqkPhddhhdhkk69VGO^
-                                     K88HHH888HHHHXHXAA4q22qP94ppbAKKRBMNWWWQWNNM0g#mAp44966PkkkPhhddhPP6694V2
-                                     n$88HHHH8HHHHHXXAAG449944pbAKRD#B0MNNNNNNMM0g$RKpV49666PPkkPPPh9PPP669hUv
-                                     .K8XXAAAHHHHHHXAAAAAAbbAAHmRRD$B0g0MNMMMMM00$mKGpV4966PPPkkPkkPPkPhP6hPP
-                                      n$8XAbbAXHXHXXAXXXXXXXXHHKHmRD#Bg0MMMMMM0B$RAVVpV496PPhh99PP6PkPhPh6hh{
-                                       K8XAGVpGXHHHXXXXXAXXXXAKKKHmD#BB0M00MM0B#HAVVpVV496PPhdddhhd6Ph9P6hPP
-                                       vRXAGVVpGAKHXXXAAAAAAXXXHRmDDD##B00000BDHAVddVV4996PhhdV9ddh6hh66kkhv
-                                        jXXOppVpGGHHHHXAAAAAXXHH888DD##B$BggBDHAOddVVpV9d6hh9d99dhPhh6kkwP2
-                                         6AAGp4hdVGAHXXAAAAAAXH88mRRDD#$$$##DHAOVVpppVV9dddh999PPhPkkkkwww^
-                                          VAAGp99hdpGAAXAAAAXXXHHHmRRRDD#DRHHAAOVppVVVVddd69999PkPhkqkwwP}
-                                          .VUAGV9PPhdpbAAAAAXXXHHHmmmmRRRRHHAAAGpppVdVVdd6PPPkPPPPPqkkwqY
-                                           .VXAGVhhhhh9pGbAXKKHHHHHmHmmHHHHAAAbGGpOVVVVdddhPPPkPPkkkkwww^
-                                            .VXGp44hhhqh94bbAAKHHHHHHHHAHAAAAAAGppOVddVdVdhPPkkkqqqkkwwv
-                                              VAGp4p4hqS2qP9VGAAAAAAAGAAAAbbGAGppVVdddddd6hhPkkkSESSwq}
-                                              .PbGppV9kaxyy2PdpGpGpGpGbbGGGGGGpVVVVdhhddhPhhPkkkS222w3
-                                                2OGpV6qaxZZy2qqhdddppOGGGGGpppVVVVddhdhhhhhPkkkqS222o
-                                                 jUGV9kEaxxxaaSqPhhdVVppGp4ppVVVddd6hhPPhPPkqqkS222Y
-                                                  tOGVkqEEaaaaSSqPhh44444pp4VVddddh66PPkPkkqSE2222Y.
-                                                   rPVh6kSEE]EEqqPP9999ddVVVVdddVd66PkPkSqqEE2aa2Y
-                                                     nhh6kkqEEqqkkk66ddh6hhddddddPkkqqqSE22aaaxy3
-                                                      vE46kkkkkkk6kkkkkPPkkPh66h6kqSSEE22ajjxxZ)
-                                                        }Eh6kkkkkqqSqqSSSSSqqqSqSSEEE]aajjYYxtc
-                                                          c3oZESS22]]E]aaaaa]]]]ajjjjjxYYolf)
-                                                             ^>stoZjjjjxxxxYYYYjoooooool17>
-                                                                  :>s7f111lllllllll1f7s:
-                                                                        ^:::>>>>>>:^
+
+                                                                                                                              vvrr
+                                                                                                                            ooyyyynn
+                                                                                                                          nnoo1111uu}}
+                                                                                                                        ^^yy11}}}}}}ZZ^^
+                                                                                                                        vvuu{{{{{{}}11}}
+                                                                                                                        ccuu{{{{{{}}}}tt
+                                                                                                                          3311{{{{{{{{uucc
+                                                                                                                            [[11}}}}}}}}[[
+                                                                                                                            ^^ZZ113333}}uurr
+                                                                                                                              }}oouu11331133
+                                                                                                                                EEZZuu33{{ZZ..
+                                                                                                                                vv22uu1133uu}}
+                                                                                                                                  EEZZuu33}}[[
+                                                                                                                                  nnyyuu33{{uurr
+                                                                                                                                  vvwwZZuu}}11}}
+                                                                                                                                    99ZZuu}}}}[[
+                                                                                                                                    ooyyuu33{{yy^^
+                                                                                                                                    }}22ZZ33{{uu{{
+                                                                                                                                    vvhhZZ33}}11oo
+                                                                                                                                    rrwwZZuu3311yy
+                                                                                                                                    ..99ZZZZuu11jj))
+                                                                                                                                      PPyyZZZZuuZZYY
+                                                                                                                                      2222yyxxZZZZyyvv^^..
+                                                                                                                                      22PPqqqqSSSSPPUU88OOVV22}}cc
+                                                                                                                                ..{{22OOGGppGGGGGGGGGGGGGGGGGGAAUU99tt
+                                                                                                                            ^^22KKUUXXAAAAAAAAAAAAGGAAGGGGAAGGpppp44pp99{{
+                                                                                                                          {{KK88AAAAHHHHHHAAAAAAAAAAAAAAAAAAOOppppVVpp99hh22
+                                                                                                                        jjRR8888XXXXHHHHAAAAAAAAAAAAAAAAOOAAAAOOOOVVdddd99VVPP..
+                                                                                                                      ttRR8888XXHHHHHHHHHHAAAAAAAAAAAAAAAAAAOOOOOOVVddhh666699PP
+                                                                                                                    vvRR$$DDDD88DDDDDDRRHHHHAAAAKKKKAAAAAAUUUUOOOOVVddhhhh6666hh22
+                                                                                                                  ..KK$$$$DDDD88BBBBBBBBDDHHHHHHKKKKKKKKUUUUOOOOVVdddd99hhPPkkwwPPnn
+                                                                                                                  jj00$$DDDDDD00MMMMMM00BBDDHHHHHHKKKKKKKKUUOOVVVVdd9999PPqqSS22wwwwvv
+                                                                                                                ^^88BB$$DDDD$$MMWWWWWWMMBBDDHHHHHHKKKKKKUUUUOOVVVVdd9999PPkkSS222222EE
+                                                                                                                jj00BB$$$$$$00NNWWWWWW00BB##RRHHHHKKKKKKUUUUOOVVVV999999PPkkSS222222qq}}
+                                                                                                                KK$$BB$$$$BBMMNNWWWWWW00BBDDHHHHHHHHHHKKUUUUOOVVVVdd9999PPkkSSEE22aa22EE
+                                                                                                              {{ggBB$$$$DDBBMMWWQQWWWW00$$RRHHHHHHHHKKKKUUUUOOVVVVdd99PPkkkkqqEE]]aa22ww}}
+                                                                                                              6600BB$$$$$$BBMMWWQQWWMM00$$RRHHHHHHKKKKUUUUOOVVVVVVddPPkkqqkkqqEE22]]2222EE
+                                                                                                            ..8800BB$$$$$$BBMMQQQQWWMMBBDDRRHHHHHHHHKKUUUUOOVVVVddhhPPkkqqqqSSEE22]]2222hhvv
+                                                                                                            {{ggBB$$##$$BB00WWQQWWWWMMBB##RRRRHHHHHHKKKKUUOOVVddddhhPPqqqqSSEE2222]]]]2222oo
+                                                                                                            6600$$DD##$$BB00MMWWWWMMMMBB##RRRRHHKKHHHHUUUUOOVVdd66kkqqSSSSEEaaaaaa]]]]2222ww^^
+                                                                                                            KKBB$$DD##$$BB00MMWWMMMM00BB##RRHHHHHHKKKKUUUUOOddhhPPqqSSSS2222aayyaaaa]]22SSqq))
+                                                                                                          rrgg$$DDDDDDDD$$BBMMMMMMMM00$$DDHHHHHHHHKKAAUUUUVVhhPPkkkkSSEE22aayyjjyyaa]]22EE22oo
+                                                                                                          nnMM$$DDDDRRDD$$BB00000000$$DDRRHHHHKKKKUUOOOOOOddhhPPkkqqSSEE22aayyyyyyyyyyaaaaaaww..
+                                                                                                          VV00##DDDDDDDD$$BB0000BB$$DDRRHHHHHHKKKKUUOOVVdd99hhkkkkSSSSEE22aayyyyyyyyaaaaaaaa22vv
+                                                                                                        ^^88BB##DDDDDD##$$BB00BB$$$$DDRRHHHHHHHHKKUUVVdd9999hhkkkkSSSSEE]]aayyyyyyyyaa]]aaaaww}}
+                                                                                                        ttgg$$DDDDDDDD####$$BB$$$$$$DDRRDDHHHHKKUUOOVV99kkkkPPkkqqSSSS22aayyyyyyyyaaaaaaaaaa22YY
+                                                                                                        6600$$##DDDDDD######BB$$DD##DDDDRRHHHHUUOOOOVV99kkkkkkkkqqSSSS]]aayyjjyyyyaaaaaa]]aa22ww
+                                                                                                        KKBB$$####DDDDDD######DDDD##DDDDRRHHAAUUOOVVVV99PPkkPPkkqqSSEE]]yyyyyyyyyyaaaaaayyjjaahhcc
+                                                                                                      vvggBB$$######DDDDDDRRDDDDDDDDDDRRHHAAAAOOOOOOVVdd99hhPPqqSSEEEEaayyyyyyaayyyyyyyyaajjaaww}}
+                                                                                                      jjWWBB$$####DDDDDDRRRRDDDDDDDDRRHHHHAAAAUUUUOOVVVVddhhPPkkSSEEEEaaaayyyyaayyxxYYxxaaaaaawwYY
+                                                                                                      KK00BB$$######DDDDRRRRDDDD##DDHHHHHHAAUUUUOOOOVVddddhhPPkkqqSS22aaaaaaaaaayyxxxxxxaaaaaa2299..
+                                                                                                    vvgg00$$##DDDDDDDDDDRRDD88DDDDRRHHHHAAUUUUOOOOVVddddhhPPkkqqqqSS22222222aaaayyxxxxyyaaaaaa22hhcc
+                                                                                                    jjWW00$$##DDRRRRDDDDDD888888RRHHHHAAUUOOOOOOVVddhhPPkkqqqqSSqqSSEE22222222aayyyyyyyyaaaaaawwdd}}
+                                                                                                    KKMMBB$$DDRRRRRRDD8888888888AAHHHHAAOOOOOOVVddhhhhPPkkqqSSSSqqqqSSEEaaaaaayyyyyyjjyyyyaaaa22PP22
+                                                                                                  vvgg00$$DDRRRRRRRR88888888XXXXAAAAAAAAOOUUOOVVddhhPPkkqqSSqqqqqqqqSS22aayyyyyyxxyyyyjjjjjjaa22ww99..
+                                                                                                  66MM00DDRRRRRRRR88XXXXXXXXXXAAAAGGppOOOOOOOOddhhPPkkkkqqqqqqSSSSSSEE22aayyyyyyyyyyyyyyxxjjaa22wwhhvv
+                                                                                                ^^8800$$DDRRRRHHHHXXXXAAAAbbGGGGGGppppOOOOVVVVddPPkkkkqqSSSSSSSS22222222aayyyyyyyyyyjjyyjjjjaa22wwPP22
+                                                                                                ttNN00$$DDRRRRHHXXXXAAbbAAbbGG4444ppppVVVVVVdd6666kkkkqqSSSSSSEE2222aaaaaayyyyyyjjjjjjjjjjaaaa22wwPPOOrr
+                                                                                                VVMM$$888888XXXXXXAAbbGGGGGG44444444ppVVVVVVdd6666qqqqqqSSSS2222222222aaaayyaaaayyxxYYxxyyaaaa22wwPPVVjj
+                                                                                              vvgg$$888888XXXXAAXXbbOOOOOO44446644444444VVdddd6666kkqqSSSSSSEE22222222aaaaaayyyyyyjjYYxxyyyyaaSSSSkkPPOO^^
+                                                                                              66MM$$888888XXXXbbbbOOOOOO44446666664444dd99dd66666666qqSSSSSSSS22222222aaaaaayyjjyyjjxxYYxxxxaa]]SSSSwwddnn
+                                                                                            rrgg$$8888XXXXXXAAbbOOOOdddd666666666644PP44999966PP6666qqSSSSSSSS22aa2222aaaaaayyjjjjjjyyxxxxxxyyaa]]22EEqq99..
+                                                                                            66$$$$88XXXXXXAAbbGGddddhhhh66666666666666PPPPPP666666qqqqSSSSEEEE2222aa2222aayyyyjjjjjjxxYYxxxxxxxxaaaa22wwhhtt
+                                                                                          ttggBBDD88XXAAAAbbGGppddhhkkkkkkwwww66666666PPPPPPPPPPqqqqqqqqEEEEEE]]aaaaaaaaaayyjjjjjjYYYYxxyyxxxxxxyyaa22EEqqPP
+                                                                                        rr88$$8888XXbbbbOOOOddddhhkkkkwwwwwwwwwwww66SSPPSSSSSSSSqqqqqqqqqqEEEE]]]]aa]]]]yyyyjjxxxxYYYYjjyyyyxxxxxxaa22aawwhh{{
+                                                                                        VV$$$$XXXXbbbbOOOOddddhhkkkkkkwwEEEEEEEEwwwwwwwwSSSSSSSSwwPPPPPPqqqqEE]]]]]]]]]]yyxxYYYYooooYYxxjjyyyyxxxxyy22aa22wwPP
+                                                                                      6600$$88XXbbbbppddddhhkkkkkkkkEEEEEEEEEEEEEEEEwwwwSSwwww666666PPPPqqqqqq]]]]]]]]]]yyYYYYooooooooYYjjyyxxyyxxaa222222wwhhtt
+                                                                                    66MM$$88XXAAbbppddhhhhkkkkkkwwwwEEEEEEaaaaaaEEEEEE22wwSSwwww6666PPPPqqqqEE]]]]]]22]]yyYYYYooooooooYYxxxxyyxxxxaaEESSSSwwPP99
+                                                                                  jj$$$$88XXAAbbOOddhhkkkkkkwwwwEEEEEEEEaaaaaaaaaaEEEE2222wwwwwwqqqqqqqqwwEEEEEE]]]]22]]yyjjYYYYooooooYYxxyyxxxxxxaa]]2222wwPPOO}}
+                                                                                jjgg$$88XXAApppphhkkwwww2222EE22EE22EEaaaaaaaajjaaaaaaEE222222wwwwqqqqqqqqSSEEEE]]]]2222]]yyjjYYYYYYYYYYxxjjxxxxaaaa]]]]22SSwwdd99..
+                                                                              jjRR88AAbbbbppddhhkkww22aaaaaa2222aaaaaaaaaaaajjjjjjaaaaaayy2222wwkkkkqqqqqqSSEEEE]]]]]]]]]]aajjxxYYYYYYxxjjxxyyyyyyaa]]]]]]SSwwhhOOjj
+                                                                            ttRRXXbbOOddddhhqqqqqqwwaayyyyyyyyaayyaaaaaajjjjjjjjjjjjjjxxyy22wwkkqqhhhhqqqqSSSSEE]]]]yyaayyyyjjxxYYYYYYxxxxxxyyyyyyyy]]]]22]]kkhhddOO^^
+                                                                          {{88AApphhkkkkkkqqqqPPPPwwaaxxxxyyxxjjjjjjjjjjjjjjjjjjjjjjaayyyy22wwqq99hhhhkkkkqqSSEE]]xxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyy]]]]]]SSkkddOOjj
+                                                                        ^^KKGGddqqwwkkkkqqPP999999qqaaxxxxxxyyjjjjjjjjjjjjjjZZjjjjjjyyxxaawwqq9944449999hhqqSSaaaaxxYYYYYYxxxxxxjjxxxxxxxxxxyyaayyaaaaaa]]aa22kkPPOOOO^^
+                                                                        66bbhh222222wwPP9999ppppVV9922xx55xxxxjjaajjjjjjZZZZZZZZjjyyyyyyaawwPP44pppp4499qqqq22aaxxYYYYYYYYxxxxxxjjjjxxxxyyyyaaaayyaayyaaaa]]22SSqqddAAnn
+                                                                      nnAAPPaaxxxxaawwPP99ppbbAAbb44wwaa55xxxxjjjjjjjjZZZZZZZZZZxxxxyyyy22qq44bbAAbb44PPqqqq22yyZZZZZZZZYYYYxxxxjjjjjjjjjjjjyyaaaaaayyyyaaaa22SSwwddOO99
+                                                                    ..VV99225555xxaawwPP99ppAAHHAAGGPP22xx55xxjjjjjjjjZZZZZZZZZZjjxxxxyywwPPppKKKKbb99PPqq99qq22ZZeeeeeeZZZZYYYYxxYYxxjjxxjjyyaayyyyyyxxyy]]22SSkkhhVVUUtt
+                                                                    ttGGwwyyZZZZyy22qqqqPP44bbKKKKAAppPP22yyxxxxjjjjZZZZZZZZeeZZxxxxxxaaww44bbmmHHbb99PP9999PP2255eetteeeeZZZZYYYYYYxxxxxxxxyyyyyyyyyyxxyyaa]]SSqqPPddOOVV
+                                                                    PP99EEZZeeZZyy22qqqqqqPP99AAHHHHHHpp9922yyxxxxZZZZZZeeeeeeZZZZjjaa22PPbbmmDDRRKKVV9999PP2255ttffffffeeeeZZZZYYYYxxxxxxjjjjyyaaaayyxxyyyy]]EESSkkddOOUUvv
+                                                                  rrVVPPaaZZeeZZyy2222aaoooojj99KKmmmmHHbb9922xxZZZZZZZZeeeeeeeeZZjjjj2299AARR##RRKK99wwjjoollFF))))))iitteeeeZZYYYYYYxxxxjjjjyyaa]]]]yyyyyy]]22SSkk99VVUU22
+                                                                  {{GGwwjjee[[55xxoollCC))FFCCoo99AARRDDmmbb9922xxZZZZeeeeeeeeeeZZjjjj22ppmm$$$$KKwwooCC))))zzcccccczziifftteeZZZZYYxxxxxxjjyyaaaa]]]]]]aayy]]22SSkkhhddVVOO^^
+                                                                  jjppwwxx[[[[llllCCCC))))zzzzFFooPPHHDDDDmmbbwwyy55ZZeeeeeeeeeeeejjxxwwbbRRBBRRPPoollCCFFzzcc!!!!!!!!TTiiff[[eeZZYYxxxxxxyyaaaayyyy]]22aayyaa]]SSkkhh99VVUUtt
+                                                                  PP9922ZZ[[3333CCCCCCCC))zzcczz))llppDD$$$$mm44wwxx55eeeeeeeeeeeeZZxxwwKK####bbjjoooojjooFFzz!!!!cc!!zzTTiittZZeeYYxxxxxxyyyyaayyjjyyaaaaaaaa]]SSkkhh99VVUUPP
+                                                                  VVPP2255[[33CCCClljjjjll))zzcczzFF22HH$$gg$$KK992255ZZeeeeeeeeeeZZyyqqHHBBRRPPoooo2299PPxxiicc**!!!!cczz))ff[[eeZZxxxxjjyyyyyyyyjjjjyyyyaaaa]]SSkkhhhh99VVOO^^
+                                                                ..VVPPyyZZttCCCClljjwwPP22ttTTzzzz))ll44RRggggRRbbPPaa55eeeetteeeeZZaa99RRBBHHwwjjjj22aa22yyffzz****!!!!ccTTii[[eeZZYYYYjjyyyyyyyyjjjjyyaaaayyaa]]SSkkhhhhVVUUtt
+                                                                ^^VVPPyy[[ffFF33oojjjjaaxxffTT****zzFF22HHggMMggRRGGwwxxZZeett[[ZZxxwwppRR00HH99wwjj33ffffiiTT**********cczz))ff[[ZZoooojjyyyyyyyyjjyy]]]]aayyaa]]SSkkhhhhddUU22
+                                                                rrVVPPyy[[ffFFlljjoo33FFiiTTzz****cc))ooVV##MMMMggmmpp22ZZee[[[[[[xxqqbb##00RRVVPPooFFzzzzzz**!!********cccc))FF[[ZZooooxxyyyyyyaaaaaa22]]yyxxaa]]SShhhh99VVOO99
+                                                                ^^VVPPyyttFFFFoo22ll))zzzz!!!!****!!))33PPRR00NNMM$$HHPPyyZZ[[[[ZZxxPPKKBBMMggmm44oo))cc!!!!!!!!!!******cccc))FF33uuooooxxyyxxxx]]22]]22]]aayyyy]]SS66hh99VVOOOOrr
+                                                                ^^VVPPxx33FFCCjj22ll))zz**!!!!****!!TTCCwwRRMMWWWWMMDDbbqqxx[[[[ZZyyPPmm00MMMMDDppoo))cc!!!!!!!!!!******cczz))FF33uuooYYxxyyxxxxyyaa]]EEEE2222]]]]SS66hh99VVOOUU{{
+                                                                ..VVqqxxll33lljjwwooFFTT************TT33PPRRNNWWQQWWMMRRVV2255[[ZZyy99RRMMNNNN$$bboo))cc!!!!!!**!!!!**zzzz))CCCC11uuYYxxxxyyaaaayyaaaa]]22aaEEEE22SS66hhhhVVOOXX}}
+                                                                  VVqqxxoooooowwPPjjffTTzz********zzTTll99##WWQQQQQQWWMMRR99aa[[ZZ22ppDDNNWWWW00HHjj))zzzz****!!!!!!**TT))CCllllZZZZYYxxjjaa]]aaaaaaaaaaaa22SSSSEESSkkkkhhVVOOUUjj
+                                                                  PPqqaajj2222wwPP22[[iiTT******zzTTiixxGGBBQQQQQQQQQQWWMMHHPP55xx22bb##NNQQQQMMRRwwCCFFTTTT**!!****zzTTFFlloojjyyaaYYxxjjaa]]aaaaaaaaaa2222SSSSEESSkkkkhhVVOOUU22
+                                                                  66PP22qqPPPPPP99qqaa[[iiTTzzTTTTiillqqHHMM%%QQQQQQWWWWNN##bbwwaawwKKBBQQQQQQWWBBVVoo33ffiiTTzzzzTTTTiilloojjwwqqSS]]xxjjaa]]aaaaEEEE22aa22SSSSSSSSkkkkhhVVOOUU22
+                                                                  jj9922PPpppp449999qqaa[[iiiiiiFF3322AABBNN%%%%%%WWNNMMMMggRRppPP99HHMMQQQQ%%QQMMRR99xxttffiiiiiiiiffttoo22PPPPhh66EEyyjjjjaa2222EEEE22aaaaSSqqSSSSkkkkhhVVOOUU22
+                                                                  }}GG22PPbbKKpp999999PPwwxx55lloojjVV##MMQQ%%QQQQWWMMMMMMMM$$HHbbbbRRMMQQQQQQWWNNBBKK99aa55[[[[tt[[ZZyy22ww99VVpphhqq22aaxxaa22aa22EEaaaa22EEEEEE22SSkk99GGUUUUPP
+                                                                  {{GG2299KKmmAApp4444pppp44PP99VVKKRRMMQQ%%%%WWWWNNMMggggMMMM##RR##BBWWQQQQWWWWWWNNBBHHbb99PPqqqqqqqqPP99VVbbAAGG44PPSS22yyaaaayyaaEE22EEEE2222]]22SSkk99GGUUUUVV
+                                                                  rrOO2299KKRRmmKKbbbbAAHHRR####BB00MMQQQQQQQQNNNNMMggggMMNNNNMMNNNNNNQQQQWWQQQQWWWWWWMMBBDDHHHHHHHHKKKKKKHH88HHAAVVhhkkSS]]2222aaaaaaEEEE2222SSSSSSkkhhVVGGOOUUVV
+                                                                  ..9922qqGGRRDDmmHHHHDD$$MMNNNNWWWWQQQQQQQQNNMMgg$$DD##00MMMMNNNNNNWWQQQQQQQQQQQQQQQQQQQQQQNNMM00ggBB##DDDDDD88AAVVhhkkSS2222EEEEaaaaEESSaaEEqqkkkkkkhhVVVVUUUUPP
+                                                                    EE222244mmDD888888DD$$MMNNWWWWWWQQ%%QQWWMMgg$$RRmmDDBB00MMNNWWWWWWQQQQQQQQQQ%%QQQQQQQQ%%%%QQWWMMMMgg$$$$DD88AAVVhhkkkkSSSSSSEE22222222aaEEqqkk66kkhh99VVUUXX22
+                                                                    jjqqyyPPHHRRRRRRRRRRDDggMMNNNNNNQQWWWWMMMM$$DDmmHHRR##00MMNNNNWWWWWWWWQQQQQQ%%%%%%QQQQ%%QQQQWWNNMM00gggg##88AAGG4466kkkkqqqqSS2222aayy22SSqqkkkkkkhhVVVVUUXXjj
+                                                                    {{hhyyPPHHRRRRRRRRRRRR##BBgg00MMNNNNMMMM00$$RRHHHHmmDDggMMMMNNNNNNWWWWQQQQQQ%%%%%%QQQQ%%%%QQQQWWNNMMggggDDHHAAGG4499kkkkqqSS22aa22EESSqqqqkkkkkkkkhhVVGGUUXXtt
+                                                                    ^^9922qqAARRRRRRRRRRRRDD####$$gg000000gg$$DDmmKKKKHHRR$$gg00MMMMNNNNWWQQQQQQ%%%%%%%%QQ%%%%%%QQWWWWMMgg$$DDHHAAGG449966kkqqSSEEEESSkkkkkkqqkk66666699VVOOUURRcc
+                                                                      PPPPqqGGDDDDRRRRRRRRRRDDDDDD$$##$$$$$$DDRRHHKKAAKKmmDD$$gg00MMMMWWWWWWQQ%%%%QQ%%%%%%%%%%%%QQWWWWMMgg$$DDHHbbpp449966PPPPqqSSkkPPPPkkkkqqPPdd9999VVGGUUXXKK..
+                                                                      jjGGhhGG88DDDDRRRRRRmmRRRRRRDDDDDDDDRRmmHHKKAAAAAAHHRR##ggggggMMMMWWQQQQQQQQQQ%%%%%%%%%%QQQQWWWWNN00##88AAGG449999kk66PPqqSSkkPPhhhhPPqqPPdd99VVVVGGUUXXPP
+                                                                      {{UUppGGHHDDDDDDRRmmmmmmmmmmmmRRRRmmmmHHAAbbbbbbbbKKHHRR$$gggg00MMWWWWNNWWQQ%%%%%%%%%%QQ%%QQWWWWNN00##HHbbVV44996666kkkkqqqqqqkkPPhhPPPPhhdd9999VVGGUUXXnn
+                                                                      ^^88AAAAHH88DDDDRRRR888888mmmmmmHHmmHHKKAAbbGGGGbbKKHHmm##$$ggMMMMMM0000NNWW%%%%%%%%QQQQQQQQWWNNMMggDDHHGG44996666kkkkqqqqqqkkkkPPhhhhhhhh66dd99VVGGUU88rr
+                                                                        VV88XXHH8888DDRRRR88HH88HHHHHHHHHHKKAAGGppppppbbKKHHRR$$$$gggg##HHKKHHBBNNQQ%%%%%%QQQQQQQQWWMM00BBDDAAGG449966kkkkqqkkkkkkPPPPPPPPhhhhPP66ddVVppGGOOVV
+                                                                        jj$$88HHHH8888DDDDRRHHHHmmHHHHHHXXAAAA44PP99ppppbbKKmmDDDD$$DDKK99PP99RRMMQQQQQQQQQQWWWWWWNNMMgg##88AAVV449966kkqqqqkkPPPPhhhhPPPP99hhPPkk6699VVGGOOnn
+                                                                        vvgg88XXHH88mmDD8888HHHHHHXXXXXXXXAAbbPP2222qqPP44ppbbAAAAKKKKVV99VVKKBBNNQQQQQQQQWWWWWWNNMMgg$$DDHHbbVV449966kkkkqqkkPPhhddddhhhhddhhkkkk6699VVGGOO^^
+                                                                          KK8888HHHHHH888888HHHHHHHHXXHHXXAAAA44qq2222qqPP9944ppppbbAAKKKKRRBBMMNNWWWWWWQQWWNNNNMM00gg##mmAApp4444996666PPkkkkkkPPhhhhddddhhPPPP66669944VV22
+                                                                          nn$$8888HHHHHHHH88HHHHHHHHHHXXXXAAAAGG444499994444ppbbAAKKRRDD##BB00MMNNNNNNNNNNNNMMMM00gg$$RRKKppVV4499666666PPPPkkkkPPPPPPhh99PPPPPP666699hhUUvv
+                                                                          ..KK88XXXXAAAAAAHHHHHHHHHHHHXXAAAAAAAAAAAAbbbbAAAAHHmmRRRRDD$$BB00gg00MMNNMMMMMMMMMM0000$$mmKKGGppVV44996666PPPPPPkkkkPPkkkkPPPPkkPPhhPP66hhPPPP
+                                                                            nn$$88XXAAbbbbAAXXHHXXHHXXXXAAXXXXXXXXXXXXXXXXHHHHKKHHmmRRDD##BBgg00MMMMMMMMMMMM00BB$$RRAAVVVVppVV449966PPPPhhhh9999PPPP66PPkkPPhhPPhh66hhhh{{
+                                                                              KK88XXAAGGVVppGGXXHHHHHHXXXXXXXXXXAAXXXXXXXXAAKKKKKKHHmmDD##BBBB00MM0000MMMM00BB##HHAAVVVVppVVVV449966PPPPhhddddddhhhhdd66PPhh99PP66hhPPPP
+                                                                              vvRRXXAAGGVVVVppGGAAKKHHXXXXXXAAAAAAAAAAAAXXXXXXHHRRmmDDDDDD####BB0000000000BBDDHHAAVVddddVVVV44999966PPhhhhddVV99ddddhh66hhhh6666kkkkhhvv
+                                                                                jjXXXXOOppppVVppGGGGHHHHHHHHXXAAAAAAAAAAXXXXHHHH888888DDDD####BB$$BBggggBBDDHHAAOOddddVVVVppVV99dd66hhhh99dd9999ddhhPPhhhh66kkkkwwPP22
+                                                                                  66AAAAGGpp44hhddVVGGAAHHXXXXAAAAAAAAAAAAXXHH8888mmRRRRDDDD##$$$$$$####DDHHAAOOVVVVppppppVVVV99ddddddhh999999PPPPhhPPkkkkkkkkwwwwww^^
+                                                                                    VVAAAAGGpp9999hhddppGGAAAAXXAAAAAAAAXXXXXXHHHHHHmmRRRRRRDDDD##DDRRHHHHAAAAOOVVppppVVVVVVVVdddddd6699999999PPkkPPhhkkqqkkwwwwPP}}
+                                                                                    ..VVUUAAGGVV99PPPPhhddppbbAAAAAAAAAAXXXXXXHHHHHHmmmmmmmmRRRRRRRRHHHHAAAAAAGGppppppVVddVVVVdddd66PPPPPPkkPPPPPPPPPPqqkkkkwwqqYY
+                                                                                      ..VVXXAAGGVVhhhhhhhhhh99ppGGbbAAXXKKKKHHHHHHHHHHmmHHmmmmHHHHHHHHAAAAAAbbGGGGppOOVVVVVVVVddddddhhPPPPPPkkPPPPkkkkkkkkwwwwww^^
+                                                                                        ..VVXXGGpp4444hhhhhhqqhh9944bbbbAAAAKKHHHHHHHHHHHHHHHHAAHHAAAAAAAAAAAAGGppppOOVVddddVVddVVddhhPPPPkkkkkkqqqqqqkkkkwwwwvv
+                                                                                            VVAAGGpp44pp44hhqqSS22qqPP99VVGGAAAAAAAAAAAAAAGGAAAAAAAAbbbbGGAAGGppppVVVVdddddddddddd66hhhhPPkkkkkkSSEESSSSwwqq}}
+                                                                                            ..PPbbGGppppVV99kkaaxxyyyy22PPddppGGppGGppGGppGGbbbbGGGGGGGGGGGGppVVVVVVVVddhhhhddddhhPPhhhhPPkkkkkkSS222222ww33
+                                                                                                22OOGGppVV66qqaaxxZZZZyy22qqqqhhddddddppppOOGGGGGGGGGGppppppVVVVVVVVddddhhddhhhhhhhhhhPPkkkkkkqqSS222222oo
+                                                                                                  jjUUGGVV99kkEEaaxxxxxxaaaaSSqqPPhhhhddVVVVppppGGpp44ppppVVVVVVdddddd66hhhhPPPPhhPPPPkkqqqqkkSS222222YY
+                                                                                                    ttOOGGVVkkqqEEEEaaaaaaaaSSSSqqPPhhhh4444444444pppp44VVVVddddddddhh6666PPPPkkPPkkkkqqSSEE22222222YY..
+                                                                                                      rrPPVVhh66kkSSEEEE]]EEEEqqqqPPPP99999999ddddVVVVVVVVddddddVVdd6666PPkkPPkkSSqqqqEEEE22aaaa22YY
+                                                                                                          nnhhhh66kkkkqqEEEEqqqqkkkkkk6666ddddhh66hhhhddddddddddddPPkkkkqqqqqqSSEE2222aaaaaaxxyy33
+                                                                                                            vvEE4466kkkkkkkkkkkkkk66kkkkkkkkkkPPPPkkkkPPhh6666hh66kkqqSSSSEEEE2222aajjjjxxxxZZ))
+                                                                                                                }}EEhh66kkkkkkkkkkqqqqSSqqqqSSSSSSSSSSqqqqqqSSqqSSSSEEEEEE]]aaaajjjjYYYYxxttcc
+                                                                                                                    cc33ooZZEESSSS2222]]]]EE]]aaaaaaaaaa]]]]]]]]aajjjjjjjjjjxxYYYYoollff))
+                                                                                                                          ^^>>ssttooZZjjjjjjjjxxxxxxxxYYYYYYYYjjooooooooooooooll1177>>
+                                                                                                                                    ::>>ss77ff111111llllllllllllllllll11ff77ss::
+                                                                                                                                                ^^::::::>>>>>>>>>>>>::^^
+
+
 
 
 
