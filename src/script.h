@@ -9,11 +9,15 @@
 	#include <unistd.h>
 	#include <dirent.h>
 	#include <sys/stat.h>
+	#include <sys/ioctl.h>
+	#include <string.h>
 #elif __APPLE__
 	#define MAXIMUM_PATH_LENGTH 1024
 	#include <unistd.h>
 	#include <dirent.h>
 	#include <sys/stat.h>
+	#include <sys/ioctl.h>
+	#include <string.h>
 #endif
 // True for Windows, Linux, and Mac OS X
 #define MAXIMUM_FILE_LENGTH 256

@@ -13,4 +13,7 @@ endif()
 
 add_executable(image2ascii ${SOURCE_FILES})
 
+if (UNIX)
+	target_link_libraries(image2ascii m)
+endif()
 
