@@ -4,6 +4,20 @@ im making this so i can turn teto into ascii art. and because i hate myself and 
 
 ALSO THIS BECAME WAY TOOO LONG SO EVERYTHING ENDED UP BEING SHOVED WITHIN ONE ACTUAL .C FILE I UNDERESTIMATED MY VISION AND HOW MUCH CODE IT WOULD TAKE TO IMPLEMENT IT
 
+# future plans
+
+as of 9/20/25, i've found several things that i'd want to improve on this project.
+
+several issues that i've noticed
+- since i map each pixel directly to an ascii character, and since each ascii character is NOT 1x1, this causes the output image to be SIGNIFICANTLY larger in "real" resolution compared to the input image. if resolution was counted per character, it would be equal to the input resolution, but unfortunately, resolution is counted by pixels
+- lack of edge detection causes the contours of the image to be lost during the grayscale process
+
+my plan of fixing this will be
+- using a standard character set and then downsizing it accordingly (ex. if a character is 8x8,then the input image would be downsized by a factor of 8)
+- using the sobel filter (since it's actually a gradient approximator) to detect edges and replacing the ascii pixels with ascii edges (ex. | / \ )
+- yes, downsizing causes loss of detail. so in order to prevent loss of detail during the edge-ing process, ill be using compute shaders (so, a gpu) to figure out which pixels who lost their data during the downsizing is ACTUALLY part of an edge.
+
+i'm not too sure about cross-compatibility with the gpu part, since i'm planning to use CUDA. but i think ill implement it in other gpu apis like maybe opengl if i get the time.
 
 # Project specifications
 - Supports multiple file types (i think)
@@ -16,9 +30,7 @@ ALSO THIS BECAME WAY TOOO LONG SO EVERYTHING ENDED UP BEING SHOVED WITHIN ONE AC
 	- PIC
 	- PPM, PGM
 
-
 Please submit a bug report / pull request for any bugs.  
-
 
 # How to run
 
